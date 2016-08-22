@@ -1,0 +1,236 @@
+Kamaldeen Alabi
+Making a bunch of SQLs Assignment
+2016 SSA - The Iron Yard Boot Camp
+August 22, 2016
+
+SQL Exercise
+
+So much SQL
+
+Create The Tables
+
+CREATE a new table named teacher with the following columns
+
+teacherId INT
+firstName VARCHAR
+lastNmae VARCHAR
+age INT
+salary DECIMAL
+CREATE a new table named student with the following columns
+
+studentId INT
+firstName VARCHAR
+lastName VARCHAR
+grade INT
+gpa DECIMAL
+CREATE a new table named class with the following columns
+
+classId INT
+name VARCHAR
+description VARCHAR
+teacherId INT
+CREATE a new table named classStudent with the following columns
+
+classStudentId INT
+classId INT
+studentId INT
+Create The Data
+
+Now you have your tables created, lets populate them with data.
+
+1. INSERT three different teachers into the teacher table
+
+INSERT INTO `week4_sql_assignment`.`teacher`
+
+(`first_name`,
+`last_name`,
+`age`,
+`salary`)
+
+VALUES
+
+('Sarah', 'Thomas', 38, 37960.75),
+
+('Ronald', 'Washington', 56, 63780.30),
+
+('Susana', 'Lopez', 44, 52120.15);
+
+
+2. Now INSERT two different classes for each teacher in the class table (that will be six classes)
+
+INSERT INTO `week4_sql_assignment`.`class`
+
+(`name`, `description`, `teacher_id`)
+
+VALUES
+('Algebra 1', 'This is an introduction to Algebra and it will cover all the basic Algebra concepts.', 2),
+
+('Calculus 1', 'This class will cover basic calculus topics for high school students.', 1),
+
+('Calculus 2', 'An intermediate Calculus class covering differential calculus and integral calculus. Prerequisites: Calculus 1', 2),
+
+('Contemporary English Writing', 'An introductory English writing for the 21th century modern era.', 3),
+
+('World Literature', 'This class will cover the varios styles and categories of literature writings in the world.', 3),
+
+('Introductory Biology', 'This is an introductory biology class that will cover the basic concepts of biology including living and non-living things', 1);
+
+
+
+3. INSERT ten students in the student table
+
+INSERT INTO `week4_sql_assignment`.`student`
+
+(`first_name`, `last_name`, `grade`, `gpa`)
+
+VALUES
+
+('Keshia', 'McDonald', 11, 3.642),
+('Mary', 'Simone', 11, 3.205),
+
+('George', 'Trump', 10, 3.733),
+
+('Mary', 'Daniel', 11, 3.128),
+
+('Kyle', 'Williams', 12, 2.40),
+
+('Kevin', 'Solomon', 9, 1.572),
+
+('Brenda', 'Bush', 12, 2.60),
+
+('Lateisha', 'Mitchell', 9, 3.27),
+
+('Serena', 'Clinton', 10, 3.421),
+
+('Marianne', 'Gongalez', 12, 3.531);
+
+
+The classStudent table is known as a linking table. It allows us to have a many-to-many relationship between classes and students. The class table includes a column for teacherId. This means each class can only have one teacher. But if this is a regular school a class can have any number of students and students can have any number of classes. This n-to-n relationship is called many-to-many in the database world.
+
+In the classStudent table INSERT rows for each student. INSERT 1, 2, or 3 classes for each student
+
+INSERT INTO `week4_sql_assignment`.`class_student`
+
+(`class_id`, `student_id`)
+
+VALUES
+
+(2, 1),
+(5, 1),
+(6, 1),
+
+(2, 2),
+(6, 2),
+
+(1, 3),
+(4, 3),
+
+(2, 4),
+(6, 4),
+
+(3, 5),
+(5, 5),
+
+(1, 6),
+(4, 6),
+(6, 6),
+
+(3, 7),
+
+(2, 8),
+(6, 8),
+
+(1, 9),
+(4, 9),
+
+(3, 10),
+(5, 10);
+
+
+COPY ALL OF THE STATMENTS YOU ARE ABOUT TO MAKE INTO A .TXT FILE
+
+If you forget the assignment will be incomplete
+
+Query The Data
+
+1. SELECT all teachers
+
+SELECT * FROM week4_sql_assignment.teacher;
+
+
+2. SELECT all classes
+
+SELECT * FROM week4_sql_assignment.class;
+
+
+3. SELECT all students
+
+SELECT * FROM week4_sql_assignment.student;
+
+
+4. SELECT all classes for teacher 1
+
+SELECT * FROM week4_sql_assignment.class
+ WHERE teacher_id = 1;
+
+
+5. SELECT all students for class 1
+
+SELECT * FROM week4_sql_assignment.class_student WHERE class_id = 1;
+
+
+6. SELECT all classes for student 1
+
+SELECT * FROM week4_sql_assignment.class_student WHERE student_id = 1;
+
+
+7. SELECT all students who's first name starts with a or b
+
+SELECT * FROM week4_sql_assignment.student 
+WHERE first_name LIKE 'b%';
+
+
+Update Data
+
+1. UPDATE teacher 1's name to Superman
+
+UPDATE `week4_sql_assignment`.`teacher`
+SET
+
+`last_name` = 'Superman' 
+
+WHERE `teacher_id` = 1;
+
+
+2. Update class 1's name to Underwater Basket Weaving
+
+UPDATE `week4_sql_assignment`.`class`
+SET
+
+`name` = 'Underwater Basket Weaving'
+
+WHERE `class_id` = 1;
+
+
+3. Update Student 1's name to Wonder Woman
+
+UPDATE `week4_sql_assignment`.`student`
+
+SET
+
+`last_name` = 'Wonder Woman'
+
+WHERE `student_id` = 1;
+
+
+Delete Data
+
+1. DELETE student 10
+
+DELETE FROM `week4_sql_assignment`.`student`
+WHERE `student_id` = 10;
+
+
+Finally!
+
+Export each of the tables to a .csv file dump all of them plus your .txt file containing your statments into a folder and push it to github!
